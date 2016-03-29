@@ -38,3 +38,11 @@
 
 # Composer PHAR
 /composer.phar
+
+# Virtual Machine
+ansible/
+Vagrantfile
+.vagrant/
+
+# IDE stuff
+.idea/
