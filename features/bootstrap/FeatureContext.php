@@ -12,6 +12,13 @@ use PHPUnit_Framework_Assert AS PHPUnit;
  */
 class FeatureContext implements Context, SnippetAcceptingContext
 {
+
+    private $computer;
+
+    private $repairJob;
+
+    private $fault;
+
     /**
      * Initializes context.
      *
@@ -21,6 +28,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function __construct()
     {
+        $this->fault = new \Acme\Fault(new \Acme\FaultCode('V_110'), 'No video output');
     }
 
 
@@ -29,7 +37,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function iHaveAFaultyComputer()
     {
-        throw new PendingException();
+        $this->computer = new \Acme\Computer(new \Acme\SerialNumber('123456'), $this->fault);
     }
 
     /**
@@ -37,7 +45,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function iBookARepair()
     {
-        throw new PendingException();
+        $this->repairJob = new \Acme\RepairJob($this->computer);
     }
 
     /**
@@ -45,7 +53,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function iShouldBeGivenAJobNumber()
     {
-        throw new PendingException();
+        PHPUnit::assertNotNull($this->repairJob->jobNumber());
     }
 
     /**
@@ -53,7 +61,9 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function iHaveARepairJob()
     {
-        throw new PendingException();
+        $this->repairJob = new \Acme\RepairJob(
+            new \Acme\Computer(new \Acme\SerialNumber('123456'), new \Acme\Fault(new \Acme\FaultCode('V_110'), 'No video output'))
+        );
     }
 
     /**
@@ -61,23 +71,26 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function iDiagnoseTheFault()
     {
-        throw new PendingException();
+        $this->fault->diagnose(new \Acme\Diagnosis("Faulty video card"));
     }
 
     /**
-     * @Then I should have a diagnosis
+     * @Then the fault should be diagnosed
      */
-    public function iShouldHaveADiagnosis()
+    public function theFaultShouldBeDiagnosed()
     {
-        throw new PendingException();
+        PHPUnit::assertTrue($this->fault->diagnosed());
     }
 
     /**
-     * @Given I have a diagnosis
+     * @Given I have a diagnosed fault
      */
-    public function iHaveADiagnosis()
+    public function iHaveADiagnosedFault()
     {
-        throw new PendingException();
+        $this->repairJob = new \Acme\RepairJob(
+            new \Acme\Computer(new \Acme\SerialNumber('123456'), new \Acme\Fault(new \Acme\FaultCode('V_110'), 'No video output'))
+        );
+        $this->fault->diagnose(new \Acme\Diagnosis("Faulty video card"));
     }
 
     /**
@@ -85,14 +98,14 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function iRepairTheFault()
     {
-        throw new PendingException();
+        $this->fault->repair();
     }
 
     /**
-     * @Then the computer should be fixed
+     * @Then the computer should not be faulty
      */
-    public function theComputerShouldBeFixed()
+    public function theComputerShouldNotBeFaulty()
     {
-        throw new PendingException();
+        PHPUnit::assertFalse($this->computer->isFaulty());
     }
 }

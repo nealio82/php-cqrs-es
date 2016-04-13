@@ -14,4 +14,14 @@ class Computer
         $this->fault = $fault;
     }
 
+    public function faulty()
+    {
+        return !$this->fault->repaired();
+    }
+
+    public function fault()
+    {
+        return $this->fault;
+    }
+
 }

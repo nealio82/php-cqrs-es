@@ -10,10 +10,29 @@ use Prophecy\Argument;
 
 class ComputerSpec extends ObjectBehavior
 {
-    function it_is_initializable(SerialNumber $serial_number)
-    {
-        $this->beConstructedWith($serial_number, new Fault(new FaultCode('E100'), 'No video output'));
 
+    function let(SerialNumber $serial_number)
+    {
+        $fault = new Fault(new FaultCode('E100'), 'No video output');
+
+        $this->beConstructedWith($serial_number, $fault);
+    }
+
+    function it_is_initializable()
+    {
         $this->shouldHaveType('Acme\Computer');
+    }
+
+    function it_is_faulty()
+    {
+        $this->faulty()->shouldBe(true);
+    }
+
+    function it_is_not_faulty_after_repair()
+    {
+        $this->fault()->repair();
+
+        $this->faulty()->shouldBe(false);
+
     }
 }

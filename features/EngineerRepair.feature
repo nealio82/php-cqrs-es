@@ -6,10 +6,10 @@ Feature: EngineerRepair
   Scenario: Diagnose Fault
     Given I have a repair job
     When I diagnose the fault
-    Then I should have a diagnosis
+    Then the fault should be diagnosed
 
   Scenario: Repair Fault
     Given I have a repair job
-    And I have a diagnosis
+    And I have a diagnosed fault
     When I repair the fault
-    Then the computer should be fixed
+    Then the computer should not be faulty

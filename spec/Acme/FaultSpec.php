@@ -2,6 +2,7 @@
 
 namespace spec\Acme;
 
+use Acme\Diagnosis;
 use Acme\FaultCode;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -22,6 +23,21 @@ class FaultSpec extends ObjectBehavior
     function it_has_a_fault_code()
     {
         $this->faultCode()->shouldNotBeNull();
+    }
+
+    function it_can_be_diagnosed()
+    {
+
+        $this->diagnose(new Diagnosis("Faulty Video Card"));
+
+        $this->diagnosed()->shouldBe(true);
+    }
+
+    function it_can_be_repaired()
+    {
+        $this->repair();
+
+        $this->repaired()->shouldBe(true);
     }
 
 }
