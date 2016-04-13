@@ -1,9 +1,9 @@
 <?php
 
-namespace spec\Acme;
+namespace spec\Acme\Fault;
 
-use Acme\Diagnosis;
-use Acme\FaultCode;
+use Acme\Fault\Diagnosis;
+use Acme\Fault\FaultCode;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -17,7 +17,7 @@ class FaultSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Acme\Fault');
+        $this->shouldHaveType('Acme\Fault\Fault');
     }
 
     function it_has_a_fault_code()

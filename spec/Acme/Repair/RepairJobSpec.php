@@ -1,8 +1,8 @@
 <?php
 
-namespace spec\Acme;
+namespace spec\Acme\Repair;
 
-use Acme\Computer;
+use Acme\Computer\Computer;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -16,7 +16,7 @@ class RepairJobSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Acme\RepairJob');
+        $this->shouldHaveType('Acme\Repair\RepairJob');
     }
 
     function it_has_a_job_number()

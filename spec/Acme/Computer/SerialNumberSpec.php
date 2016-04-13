@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\Acme;
+namespace spec\Acme\Computer;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -11,6 +11,6 @@ class SerialNumberSpec extends ObjectBehavior
     {
         $this->beConstructedWith('111111');
 
-        $this->shouldHaveType('Acme\SerialNumber');
+        $this->shouldHaveType('Acme\Computer\SerialNumber');
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
-namespace Acme;
+namespace Acme\Repair;
+
+use Acme\Computer\Computer;
 
 class RepairJob
 {

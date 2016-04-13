@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\Acme;
+namespace spec\Acme\Computer;
 
-use Acme\Fault;
-use Acme\FaultCode;
-use Acme\SerialNumber;
+use Acme\Fault\Fault;
+use Acme\Fault\FaultCode;
+use Acme\Computer\SerialNumber;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -20,19 +20,19 @@ class ComputerSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Acme\Computer');
+        $this->shouldHaveType('Acme\Computer\Computer');
     }
 
     function it_is_faulty()
     {
-        $this->faulty()->shouldBe(true);
+        $this->isFaulty()->shouldBe(true);
     }
 
     function it_is_not_faulty_after_repair()
     {
         $this->fault()->repair();
 
-        $this->faulty()->shouldBe(false);
+        $this->isFaulty()->shouldBe(false);
 
     }
 }

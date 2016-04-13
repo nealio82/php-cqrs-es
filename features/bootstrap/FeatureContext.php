@@ -28,16 +28,17 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function __construct()
     {
-        $this->fault = new \Acme\Fault(new \Acme\FaultCode('V_110'), 'No video output');
+        $this->fault = new \Acme\Fault\Fault(new \Acme\Fault\FaultCode('V_110'), 'No video output');
+        $this->diagnosis = new \Acme\Fault\Diagnosis("Faulty video card");
+        $this->computer = new \Acme\Computer\Computer(new \Acme\Computer\SerialNumber('123456'), $this->fault);
     }
-
 
     /**
      * @Given I have a faulty computer
      */
     public function iHaveAFaultyComputer()
     {
-        $this->computer = new \Acme\Computer(new \Acme\SerialNumber('123456'), $this->fault);
+        $this->computer = new \Acme\Computer\Computer(new \Acme\Computer\SerialNumber('123456'), $this->fault);
     }
 
     /**
@@ -45,7 +46,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function iBookARepair()
     {
-        $this->repairJob = new \Acme\RepairJob($this->computer);
+        $this->repairJob = new \Acme\Repair\RepairJob($this->computer);
     }
 
     /**
@@ -61,8 +62,8 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function iHaveARepairJob()
     {
-        $this->repairJob = new \Acme\RepairJob(
-            new \Acme\Computer(new \Acme\SerialNumber('123456'), new \Acme\Fault(new \Acme\FaultCode('V_110'), 'No video output'))
+        $this->repairJob = new \Acme\Repair\RepairJob(
+            $this->computer
         );
     }
 
@@ -71,7 +72,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function iDiagnoseTheFault()
     {
-        $this->fault->diagnose(new \Acme\Diagnosis("Faulty video card"));
+        $this->fault->diagnose($this->diagnosis);
     }
 
     /**
@@ -87,10 +88,10 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function iHaveADiagnosedFault()
     {
-        $this->repairJob = new \Acme\RepairJob(
-            new \Acme\Computer(new \Acme\SerialNumber('123456'), new \Acme\Fault(new \Acme\FaultCode('V_110'), 'No video output'))
+        $this->repairJob = new \Acme\Repair\RepairJob(
+            $this->computer
         );
-        $this->fault->diagnose(new \Acme\Diagnosis("Faulty video card"));
+        $this->fault->diagnose($this->diagnosis);
     }
 
     /**

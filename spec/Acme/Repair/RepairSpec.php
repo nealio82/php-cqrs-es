@@ -1,8 +1,8 @@
 <?php
 
-namespace spec\Acme;
+namespace spec\Acme\Repair;
 
-use Acme\RepairJob;
+use Acme\Repair\RepairJob;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -13,6 +13,6 @@ class RepairSpec extends ObjectBehavior
 
         $this->beConstructedWith($repair_job);
 
-        $this->shouldHaveType('Acme\Repair');
+        $this->shouldHaveType('Acme\Repair\Repair');
     }
 }

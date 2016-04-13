@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\Acme;
+namespace spec\Acme\Fault;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -12,6 +12,6 @@ class DiagnosisSpec extends ObjectBehavior
 
         $this->beConstructedWith("Faulty video card");
 
-        $this->shouldHaveType('Acme\Diagnosis');
+        $this->shouldHaveType('Acme\Fault\Diagnosis');
     }
 }

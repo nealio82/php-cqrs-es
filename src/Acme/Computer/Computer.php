@@ -1,6 +1,8 @@
 <?php
 
-namespace Acme;
+namespace Acme\Computer;
+
+use Acme\Fault\Fault;
 
 class Computer
 {
@@ -14,7 +16,7 @@ class Computer
         $this->fault = $fault;
     }
 
-    public function faulty()
+    public function isFaulty()
     {
         return !$this->fault->repaired();
     }
