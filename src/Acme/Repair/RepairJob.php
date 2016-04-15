@@ -7,17 +7,17 @@ use Acme\Computer\Computer;
 class RepairJob
 {
     private $computer;
-    private $jobNumber = null;
+    private $job_number = null;
 
     public function __construct(Computer $computer)
     {
         $this->computer = $computer;
-        $this->jobNumber = time();
+        $this->job_number = crc32(time() . $computer->serialNumber());
     }
 
     public function jobNumber()
     {
-        return $this->jobNumber;
+        return $this->job_number;
     }
 
 }

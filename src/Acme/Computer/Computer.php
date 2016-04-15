@@ -2,9 +2,11 @@
 
 namespace Acme\Computer;
 
+use Acme\EventSourcing\AggregateRoot;
+
 use Acme\Fault\Fault;
 
-class Computer
+class Computer extends AggregateRoot
 {
 
     private $serial_number;
@@ -24,6 +26,21 @@ class Computer
     public function fault()
     {
         return $this->fault;
+    }
+
+    public function serialNumber()
+    {
+        return $this->serial_number->serialNumber();
+    }
+
+    public function bookForRepair()
+    {
+        $this->recordApplyAndPublishThat(new ComputerWasBookedForRepair($this));
+    }
+
+    protected function applyComputerWasBookedForRepair(ComputerWasBookedForRepair $event)
+    {
+        $this->serial_number = $event->serialNumber();
     }
 
 }
