@@ -6,10 +6,21 @@ use Acme\EventSourcing\AggregateRoot;
 
 use Acme\Fault\Fault;
 
+use JMS\Serializer\Annotation\Type;
+
 class Computer extends AggregateRoot
 {
 
+    /**
+     * @var SerialNumber
+     * @Type("Acme\Computer\SerialNumber")
+     */
     private $serial_number;
+
+    /**
+     * @var Fault
+     * @Type("Acme\Fault\Fault")
+     */
     private $fault;
 
     public function __construct(SerialNumber $serial_number, Fault $fault)
@@ -30,7 +41,7 @@ class Computer extends AggregateRoot
 
     public function serialNumber()
     {
-        return $this->serial_number->serialNumber();
+        return $this->serial_number;
     }
 
     public function bookForRepair()

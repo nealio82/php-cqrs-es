@@ -2,12 +2,28 @@
 
 namespace Acme\Fault;
 
+use JMS\Serializer\Annotation\Type;
+
 class Fault
 {
 
+    /**
+     * @var FaultCode
+     * @Type("Acme\Fault\FaultCode")
+     */
     private $fault_code;
+
+    /**
+     * @var
+     * @Type("string")
+     */
     private $fault_description;
     private $diagnosis;
+    
+    /**
+     * @var bool
+     * @Type("boolean")
+     */
     private $is_repaired;
 
     public function __construct(FaultCode $fault_code, $fault_description)

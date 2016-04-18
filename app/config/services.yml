@@ -17,3 +17,7 @@ services:
   app.domain_notifier:
     class: AppBundle\EventSourcing\DomainEventNotifier
     arguments: ["@doctrine.orm.entity_manager"]
+
+  app.repair_projector:
+    class: AppBundle\EventSourcing\RepairProjectorListener
+    arguments: ["@doctrine.orm.entity_manager"]

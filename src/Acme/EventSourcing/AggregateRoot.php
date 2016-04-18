@@ -3,10 +3,16 @@
 
 namespace Acme\EventSourcing;
 
+use JMS\Serializer\Annotation\Type;
+
 
 class AggregateRoot
 {
 
+    /**
+     * @var array
+     * @Type("array<Acme\EventSourcing\DomainEvent>")
+     */
     private $recordedEvents = [];
 
     protected function recordApplyAndPublishThat(DomainEvent $domainEvent)

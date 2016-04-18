@@ -4,10 +4,21 @@ namespace Acme\Computer;
 
 use Acme\EventSourcing\DomainEvent;
 
+use JMS\Serializer\Annotation\Type;
+
 class ComputerWasBookedForRepair implements DomainEvent
 {
 
+    /**
+     * @var Computer
+     * @Type("Acme\Computer\Computer")
+     */
     private $computer;
+
+    /**
+     * @var \DateTime
+     * @Type("DateTime")
+     */
     private $occurred_on;
 
     public function __construct(Computer $computer)
