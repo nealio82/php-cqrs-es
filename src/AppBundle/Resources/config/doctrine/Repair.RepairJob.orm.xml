@@ -4,11 +4,10 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
     <entity repository-class="AppBundle\Repository\DoctrineRepairJobRepository" name="Acme\Repair\RepairJob"
             table="repair_jobs">
-        <id name="job_number" type="integer" column="job_number">
+        <id name="job_number" type="bigint" column="job_number">
             <generator strategy="NONE"/>
         </id>
         <field name="computer" type="object"/>
     </entity>
-
 
 </doctrine-mapping>

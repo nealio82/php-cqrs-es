@@ -20,4 +20,9 @@ class RepairJob
         return $this->job_number;
     }
 
+    public function computer()
+    {
+        return $this->computer;
+    }
+
 }

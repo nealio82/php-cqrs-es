@@ -19,7 +19,7 @@ class Fault
      */
     private $fault_description;
     private $diagnosis;
-    
+
     /**
      * @var bool
      * @Type("boolean")
@@ -41,6 +41,11 @@ class Fault
     public function diagnose(Diagnosis $diagnosis)
     {
         $this->diagnosis = $diagnosis;
+    }
+
+    public function description()
+    {
+        return $this->fault_description;
     }
 
     public function diagnosed()

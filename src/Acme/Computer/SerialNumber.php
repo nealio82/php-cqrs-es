@@ -18,6 +18,11 @@ class SerialNumber
         $this->serial_number = $serial_number;
     }
 
+    public function __toString()
+    {
+        return $this->serialNumber();
+    }
+
     public function serialNumber()
     {
         return $this->serial_number;
